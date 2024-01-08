@@ -48,6 +48,18 @@ CREATE TABLE IF NOT EXISTS `bd_BancoInvest`.`tb_Conta` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `bd_bancoinvest`.`tb_Investimento` (
+  `id_Investimento` INT NOT NULL AUTO_INCREMENT,
+  `id_User` INT NOT NULL,
+  `valorDepositado` DOUBLE NOT NULL,
+  `valorLucro` DOUBLE NOT NULL,
+  `valorRetirado` DOUBLE NULL,
+  `data_Criacao` DATE NOT NULL,
+  `data_Final` DATE NOT NULL,
+  `data_Retirada` DATE NULL,
+  `status_Investimento` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_Investimento`))
+ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
