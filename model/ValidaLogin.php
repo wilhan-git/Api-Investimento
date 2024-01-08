@@ -1,6 +1,6 @@
 <?php
 
-require_once("/xampp/htdocs/projetoTeste/assets/config/Conexao.php");
+require_once("/xampp/htdocs/Api-Investimento/assets/config/Conexao.php");
 
 
 class ValidaLogin{

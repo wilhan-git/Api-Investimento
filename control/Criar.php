@@ -1,6 +1,6 @@
 <?php 
 require_once("../control/Conta.php");
-require_once("/xampp/htdocs/projetoTeste/model/Investimento.php");
+require_once("/xampp/htdocs/Api-Investimento/model/Investimento.php");
 
  class Investimento extends ContaUser{
     
