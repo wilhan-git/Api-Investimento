@@ -1,26 +1,28 @@
 <?php
-    require_once("../control/Usuario.php");
+require_once("../control/Usuario.php");
 
 
-    if(isset($_POST['acao'])){
-        $usuario = new Usuario($_POST['nomeUser'],$_POST['sobrenomeUser'],$_POST['emailUser'],$_POST['senhaUser'],$_POST['telefoneUser'],$_POST['deposito']);
-        $usuario ->cadastrarUser();
+if (isset($_POST['acao'])) {
+    $usuario = new Usuario($_POST['nomeUser'], $_POST['sobrenomeUser'], $_POST['emailUser'], $_POST['senhaUser'], $_POST['telefoneUser'], $_POST['deposito']);
+    $usuario->cadastrarUser();
 
-        echo("<script>window.alert('Cadastro Efetuado Com sucesso')</script>");
+    echo ("<script>window.alert('Cadastro Efetuado Com sucesso')</script>");
 
-        header("location:http://localhost/Api-Investimento");
-    }
+    header("location:http://localhost/Api-Investimento");
+}
 ?>
 
 
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
 </head>
+
 <body>
     <form action="" method="POST">
         <label for="Nome">Nome</label>
@@ -47,4 +49,5 @@
         <input type="submit" name="acao" value="Cadastrar">
     </form>
 </body>
+
 </html>

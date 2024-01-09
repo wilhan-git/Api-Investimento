@@ -2,10 +2,7 @@
     session_start();
     $itensLista = 0;
     if(isset($_GET['listar'])){
-        $qtyPagina = 2;
-        $paginaAtual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
-        $indiceInicio = ($paginaAtual - 1)* $qtyPagina;
-        $itensLista = array('teste um','teste um','teste um','teste um','teste um','teste um','teste um','teste um');
+       
     }
 ?>
 
@@ -26,13 +23,6 @@
         <?php endforeach?>
 
 
-        <?php 
-        $totalPg = ceil(count($listaItem)/$qtyPagina);
-            for($i=1;$i<=$totalPg;$i++) : 
-        ?>
-        <a href="?pagina=<?=$i?>"> <?=$i?></a>
-
-        <?php endfor;?>
     </main>
 </body>
 </html>
