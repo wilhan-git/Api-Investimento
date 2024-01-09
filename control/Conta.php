@@ -9,10 +9,11 @@
             }
 
             
-            public function sacar($idIvestimento,$data){
+            public function sacar($idUser,$idIvestimento,$data){
                $saque = new Investir();
                $valorSaque =  $saque->saqueInvest($idIvestimento,$data); 
-
+               $saque -> atualizarCaixa($idUser,$valorSaque);
+                 
                $this->setSaldo($valorSaque);
 
                return $valorSaque;

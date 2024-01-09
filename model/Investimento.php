@@ -60,6 +60,21 @@ require_once("../assets/config/Conexao.php");
                         echo("Erro na Consulta".$e);
                     }   
         }
+
+        public function atualizarCaixa($id,$valor){
+                try{
+                        $query= Conexao::conectar()->prepare("UPDATE tb_user SET CaixaUser = ? WHERE idtb_User = ?");
+                        $query->bindParam(1,$valor);
+                        $query->bindParam(2,$id);
+                
+                        $query->execute();
+
+                        return true;
+        
+                    }catch(PDOException $e){
+                        echo("Erro na Consulta".$e);
+                    } 
+        }
         
 
         function saqueInvest($idinvestimento,$dataAtual)
