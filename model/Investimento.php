@@ -30,7 +30,7 @@ require_once("../assets/config/Conexao.php");
                 echo("Erro na Consulta" . $e);
             }
         }
-        function buscarInvestimento($idinvestimento){
+        private function buscarInvestimento($idinvestimento){
                 try{
                         $query= Conexao::conectar()->prepare("SELECT * FROM tb_Investimento WHERE id_Investimento = ?");
                         $query->bindParam(1,$idinvestimento);
@@ -45,7 +45,7 @@ require_once("../assets/config/Conexao.php");
                    
         }
 
-        function atualizaDadosInvet($valor,$dataSaque,$status,$id){
+        private function atualizaDadosInvet($valor,$dataSaque,$status,$id){
                 try{
                         $query= Conexao::conectar()->prepare("UPDATE tb_Investimento SET valorRetirado = ?, data_Retirada = ?, status_Investimento = ? WHERE id_Investimento = ?");
                         $query->bindParam(1,$valor);
@@ -66,11 +66,10 @@ require_once("../assets/config/Conexao.php");
         {
             
             $dado = $this->buscarInvestimento($idinvestimento);
-            $valorganho = $dado[0]['valorDepositado'] * 0.0052;
-            var_dump(strtotime($dataAtual));
+         
             if((strtotime($dataAtual) >= strtotime($dado[0]['data_Criacao'])) && (strtotime($dataAtual)<=strtotime($dado[0]['data_Final']))){
                 $meses = $this->calcularMeses($this->formataData($dado[0]['data_Criacao']),$this->formataData($dataAtual));
-           
+                $valorganho = $meses * ($dado[0]['valorDepositado'] * 0.0052);
                 $investimento = $dado[0]['valorDepositado'] + $this->tributos($meses, $valorganho);
                 $this->atualizaDadosInvet($investimento,$dataAtual,'Sacado',$idinvestimento);
     
@@ -80,7 +79,7 @@ require_once("../assets/config/Conexao.php");
             
         }
 
-        function calcularMeses($dataInicial,$dataAtual)
+        private function calcularMeses($dataInicial,$dataAtual)
         {
             $periodoInvest = $dataInicial->diff($dataAtual);
     
@@ -90,7 +89,7 @@ require_once("../assets/config/Conexao.php");
             return $tempoInvest;
         }
     
-        function tributos($meses, $ganhoComposto)
+        private function tributos($meses, $ganhoComposto)
         {
             if ($meses < 12) {
                 $lucro = $ganhoComposto - ($ganhoComposto * 0.225);

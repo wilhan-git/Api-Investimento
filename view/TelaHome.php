@@ -6,8 +6,6 @@
     $valorInvestimento = 0;
 
     $padrao = numfmt_create("pt_BR", NumberFormatter::CURRENCY);
-    $conta = new ContaUser();
-    $conta->setSaldo(2000);
     
 
     $lista = new ConsultaAuto();
@@ -24,21 +22,23 @@
         $resultado = $investir->criar();
         
         if($resultado == 1){
-            header("Location:http://localhost/projetoTeste/view/Telahome.php");
+            header("Location:http://localhost/Api-Investimento/view/Telahome.php");
         }
         
 
          return $resultado; 
     }
 
-    if(isset($_POST['id'])){
+    if(isset($_POST['sacar'])){
         $data = $_POST['dataSaque'];
-        var_dump($data);
-
         $resultado = $conta ->sacar($_POST['id'],$data);
+
+        var_dump($resultado);
 
       
     }
+
+    
 
     
 ?>
@@ -55,7 +55,7 @@
     </div>
 
     <div class="main">
-        <p>Valor Disponivel <strong><?=numfmt_format_currency($padrao, $conta->getSaldo(), "BRL")?></strong></p>
+        <p>Valor Disponivel <strong><?=numfmt_format_currency($padrao, $_SESSION['caixa'], "BRL")?></strong></p>
 
         <p>Investimento <strong><?=numfmt_format_currency($padrao,  $valorInvestimento, "BRL")?></strong></p>
 
@@ -85,8 +85,10 @@
                 <form action="" method="POST">
                     <label for="dataSaque">Retirada</label>
                     <input type="date" name="dataSaque">
-                    <input type="submit" name="id=<?=$listar['id_Investimento'] ?> " value="Sacar">
+                    <input type="hidden" name="id" value="<?=$listar['id_Investimento'] ?>">
+                    <button type="submit" name="sacar">Sacar</button>  
                 </form>
+                
                 
 
               <p>__________________________________________________</p>

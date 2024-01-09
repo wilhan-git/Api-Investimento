@@ -3,12 +3,12 @@
 
 
     if(isset($_POST['acao'])){
-        $usuario = new Usuario($_POST['nomeUser'],$_POST['sobrenomeUser'],$_POST['emailUser'],$_POST['senhaUser'],$_POST['telefoneUser']);
+        $usuario = new Usuario($_POST['nomeUser'],$_POST['sobrenomeUser'],$_POST['emailUser'],$_POST['senhaUser'],$_POST['telefoneUser'],$_POST['deposito']);
         $usuario ->cadastrarUser();
 
         echo("<script>window.alert('Cadastro Efetuado Com sucesso')</script>");
 
-        header("location:http://localhost/backend-test/");
+        header("location:http://localhost/Api-Investimento");
     }
 ?>
 
@@ -40,6 +40,9 @@
 
         <label for="telefone">telefone</label>
         <input type="tel" name="telefoneUser" id="telefoneUser">
+
+        <label for="Deposito">Valor Deposito</label>
+        <input type="number" name="deposito" id="deposito">
 
         <input type="submit" name="acao" value="Cadastrar">
     </form>

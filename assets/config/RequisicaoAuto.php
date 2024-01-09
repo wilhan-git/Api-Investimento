@@ -1,5 +1,5 @@
 <?php
-    require_once("../Api-Investimento/assets/config/Conexao.php");
+    require_once("/xampp/htdocs/Api-Investimento/assets/config/Conexao.php");
     class ConsultaAuto{
 
         public function listaInvestimento($id,$status){
@@ -18,5 +18,6 @@
             }
            
         }
+
     }
 ?>

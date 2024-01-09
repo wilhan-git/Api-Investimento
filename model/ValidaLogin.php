@@ -1,6 +1,7 @@
 <?php
 
 require_once("/xampp/htdocs/Api-Investimento/assets/config/Conexao.php");
+require_once("/xampp/htdocs/Api-Investimento/control/Login.php");
 
 
 class ValidaLogin{
@@ -11,6 +12,7 @@ class ValidaLogin{
     public $username;
     public $sobrenome;
     public $contato;
+    public $deposito;
 
     public function __construct(
         private readonly Login $user
@@ -35,6 +37,10 @@ class ValidaLogin{
         return $this->idUser;
       }
 
+      public function getDeposito(){
+        return $this->deposito;
+      }
+
      function valida()
      {
        try {
@@ -49,6 +55,7 @@ class ValidaLogin{
                $this->username = $verifica[0]["Nome_User"];
                $this->sobrenome = $verifica[0]["Sobrenome_User"];
                $this->contato = $verifica[0]["Contato"];
+               $this->deposito = $verifica[0]["CaixaUser"];
                return true;
              } else {
                $msgErro = "SENHA INCORRETA, POR FAVOR INSIRA UMA SENHA VALIDA";
@@ -58,7 +65,7 @@ class ValidaLogin{
            }
             $msgErro = "EMAIL INCORRETO OU INEXISTENTE, POR FAVOR INSIRA UM EMAIL VALIDO";
          
-            return $msgErro;
+            return $verifica;
        } catch (PDOException $e) {
             echo "erro na consulta";
        }

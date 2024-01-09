@@ -6,7 +6,8 @@
             public $sobrenome,
             public $email,
             public $senha,
-            public $contato
+            public $contato,
+            public $deposito
         ) {
             
         }
@@ -26,6 +27,9 @@
         }
         public function getContato(){
             return $this->contato;
+        }
+        public function getDeposito(){
+            return $this->deposito;
         }
 
 
