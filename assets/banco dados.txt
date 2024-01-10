@@ -17,9 +17,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 CREATE SCHEMA IF NOT EXISTS `bd_BancoInvest` DEFAULT CHARACTER SET utf8 ;
 USE `bd_BancoInvest` ;
 
--- -----------------------------------------------------
--- Table `bd_BancoInvest`.`tb_User`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bd_BancoInvest`.`tb_User` (
   `idtb_User` INT NOT NULL AUTO_INCREMENT,
   `Nome_User` VARCHAR(45) NOT NULL,
@@ -27,25 +24,8 @@ CREATE TABLE IF NOT EXISTS `bd_BancoInvest`.`tb_User` (
   `Email` VARCHAR(45) NOT NULL,
   `Senha_User` VARCHAR(100) NOT NULL,
   `Contato` VARCHAR(20) NOT NULL,
+  `CaixaUser` Double, 
   PRIMARY KEY (`idtb_User`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `bd_BancoInvest`.`tb_Conta`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bd_BancoInvest`.`tb_Conta` (
-  `idtb_Conta` INT NOT NULL AUTO_INCREMENT,
-  `caixa_User` DOUBLE NULL,
-  `data_Criacao` DATETIME NULL,
-  `tb_User_idtb_User` INT NOT NULL,
-  PRIMARY KEY (`idtb_Conta`),
-  INDEX `fk_tb_Conta_tb_User_idx` (`tb_User_idtb_User` ASC) VISIBLE,
-  CONSTRAINT `fk_tb_Conta_tb_User`
-    FOREIGN KEY (`tb_User_idtb_User`)
-    REFERENCES `bd_BancoInvest`.`tb_User` (`idtb_User`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `bd_bancoinvest`.`tb_Investimento` (
