@@ -1,82 +1,38 @@
-<?php 
+<?php
 
-    class ContaUser{
-        private $saldo;
-            
+class ContaUser
+{
+    private $saldo;
 
-            public function depositar($deposito){
-                $this->saldo = $this->saldo + $deposito;
-            }
 
-            
-            public function sacar($idIvestimento,$data){
-               $saque = new Investir();
-               $valorSaque =  $saque->saqueInvest($idIvestimento,$data); 
-
-               $this->setSaldo($valorSaque);
-
-               return $valorSaque;
-            }
-
-            public function getSaldo(){
-                return $this->saldo;
-            }
-
-            public function setSaldo($valor){
-                $this ->saldo =+ $valor;
-                return $this;
-            }
+    public function depositar($deposito)
+    {
+        $this->saldo = $this->saldo + $deposito;
     }
 
-    /*public $dataAtual;
 
-    function saqueInvest($investimento, $deposito, $dataInicial)
+    public function sacar($idUser, $idIvestimento, $data,$caixa)
     {
-        $ganhoComposto = $deposito * 0.0052;
-        $meses = $this->calcularMeses($dataInicial);
-        if ($investimento > 0) {
-            $investimento = $deposito + $this->tributos($meses,$ganhoComposto);
+        $saque = new Investir();
+        $valorSaque =  $saque->saqueInvest($idIvestimento, $data) + $caixa;
+        $saque->atualizarCaixa($idUser, $valorSaque);
 
-            return $investimento;
+        if($saque==true){
+
+            return $this->setSaldo($valorSaque);
         }
+
+        
     }
 
-    function calcularMeses($dataInicial)
+    public function getSaldo()
     {
-        $periodoInvest = $dataInicial->diff($this->dataAtual);
-
-        $tempoInvest = $periodoInvest->y * 12 + $periodoInvest->m;
-
-
-        return $tempoInvest;
+        return $this->saldo;
     }
 
-    function tributos($meses, $ganhoComposto)
+    public function setSaldo($valor)
     {
-        switch ($meses) {
-            case $meses < 12:
-                $lucro = $ganhoComposto - ($ganhoComposto * 0.225);
-                return $lucro;
-                break;
-            case $meses < 24:
-                $lucro = $ganhoComposto - ($ganhoComposto * 0.185);
-                return $lucro;
-                break;
-            case $meses > 24:
-                $lucro = $ganhoComposto - ($ganhoComposto * 0.15);
-                return $lucro;
-                break;
-        }
+        $this->saldo = +$valor;
+        return $this;
     }
-
-    if($saque<=$this->saldo){
-                    $this->saldo = $this->saldo - $saque;
-                    $msgInfo = "Saque Efetuado";
-                    return $msgInfo;
-                }
-
-                $msgInfo = "Saldo Insuficiente";
-
-                return $msgInfo;
-    */
-?>
+}

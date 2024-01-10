@@ -7,23 +7,21 @@ require_once("model/ValidaLogin.php");
 if (isset($_POST['acao'])) {
     $email = $_POST['usuario'];
     $senha = $_POST['senha'];
-   
+
 
     $usuario = new Login($email, $senha);
-
     $executaLogin = $usuario->valida();
     
-    
-    var_dump($executaLogin);
     if ($executaLogin == 1) {
-        
+
         $_SESSION['login'] = $email;
         $_SESSION['senha'] = $senha;
         $_SESSION['id_usuario'] = $usuario->getId();
         $_SESSION['nome'] = $usuario->getNome();
         $_SESSION['sobrenome'] = $usuario->getSobreNome();
-        $_SESSION['contato'] = $usuario ->getContato();
-        header("Location:http://localhost/projetoTeste/view/Telahome.php");
+        $_SESSION['contato'] = $usuario->getContato();
+        $_SESSION['caixa'] = $usuario->getDeposito();
+        header("Location:http://localhost/Api-Investimento/view/Telahome.php");
     } else {
         unset($_SESSION['login']);
         unset($_SESSION['senha']);
@@ -53,7 +51,7 @@ if (isset($_POST['acao'])) {
         <input type="submit" name="acao" value="Logar">
     </form>
 
-    <a href="../backend-test/view/PgCadastro.php">Criar Usuario</a>
+    <a href="../Api-Investimento/view/PgCadastro.php">Criar Usuario</a>
 </body>
 
 </html>
