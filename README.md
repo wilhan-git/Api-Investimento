@@ -4,7 +4,7 @@ Api criada para armazenar e gerenciar investimentos
 ## Documentação
 
 ### Linguagem e Ferramentas
-Para a criação, foram utilizadas como linguagens principais o PHP e o MySQL, e teve como ferramentas o Visual Studio para elaboração da API e o MySQL Workbench.
+Para a criação, foram utilizadas como linguagens principais o PHP e o MySQL, e teve como ferramentas o Visual Studio para elaboração da API e o MySQL Workbench. OBS: Foi deixado um arquivo txt, com as informaçoes das tabelas utilizadas no teste, localizado dentro da pasta assets nome(banco dados.txt).
 
 ### Modo de Uso
 Esta API tem como base calcular e gerenciar investimentos. Para isso, foram criadas duas tabelas no Banco de Dados: uma tabela para o cadastro de usuários (tb_user) e uma tabela para o Investimento (tb_Investimento). Essas tabelas foram desenvolvidas exclusivamente para testar a aplicação.
