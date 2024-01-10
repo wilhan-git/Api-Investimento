@@ -18,5 +18,23 @@ class ConsultaAuto
             echo ("Erro na Consulta" . $e);
         }
     }
+
+    public function totalRegistros($idUser,$limite)
+        {
+                try {
+                        $query = Conexao::conectar()->prepare("SELECT * FROM tb_investimento WHERE id_User = ? ");
+                        $query->bindParam(1, $idUser);
+            
+                        $query->execute();
+
+                        $lista = $query->fetchAll();
+
+                        $result= ceil(count($lista)/$limite);
+                        
+                        return $result;
+                } catch (PDOException $e) {
+                        echo ("Erro na Consulta" . $e);
+                }
+        }
 }
 ?>

@@ -78,6 +78,23 @@ class Investir
         }
 
 
+        public function registrosInvest($idUsuario, $inicio, $limite)
+        {
+                try {
+                        $query = Conexao::conectar()->prepare("SELECT * FROM tb_investimento WHERE id_User = ? ORDER BY data_Criacao LIMIT ?, ?");
+                        $query->bindParam(1, $idUsuario, PDO::PARAM_INT);
+                        $query->bindParam(2, $inicio, PDO::PARAM_INT);
+                        $query->bindParam(3, $limite, PDO::PARAM_INT);
+
+                        $query->execute();
+
+                        $result = $query->fetchAll();
+                        return $result;
+                } catch (PDOException $e) {
+                        echo ("Erro na Consulta" . $e);
+                }
+        }
+
         function saqueInvest($idinvestimento, $dataAtual)
         {
 

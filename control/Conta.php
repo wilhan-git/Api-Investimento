@@ -11,15 +11,18 @@ class ContaUser
     }
 
 
-    public function sacar($idUser, $idIvestimento, $data)
+    public function sacar($idUser, $idIvestimento, $data,$caixa)
     {
         $saque = new Investir();
-        $valorSaque =  $saque->saqueInvest($idIvestimento, $data);
+        $valorSaque =  $saque->saqueInvest($idIvestimento, $data) + $caixa;
         $saque->atualizarCaixa($idUser, $valorSaque);
 
-        $this->setSaldo($valorSaque);
+        if($saque==true){
 
-        return $valorSaque;
+            return $this->setSaldo($valorSaque);
+        }
+
+        
     }
 
     public function getSaldo()

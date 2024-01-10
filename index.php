@@ -11,7 +11,7 @@ if (isset($_POST['acao'])) {
 
     $usuario = new Login($email, $senha);
     $executaLogin = $usuario->valida();
-    var_dump($executaLogin);
+    
     if ($executaLogin == 1) {
 
         $_SESSION['login'] = $email;
